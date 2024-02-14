@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="header"></div>
+        <div id="sidebarL"></div>
+
+        <!--codigo de conversão de temperartura -->
+         <div id="content"> <form>
+            <label for="tempInput" id="celsiuslabel"></label>
+            <input type="number" id="tempInput" name="tempImput" required>
+            <button id="alinha_botao" type="submit">Converter</button>
+        </form>
+        <!--campos de seleções de opções de escolha-->
+        <label for="opcao" id="op1">de:</label>
+            <select id="opcao">
+                <option id="opcao"value="1">milimetros</option>
+                <option id="opcao"value="2">centimetros</option>
+                <option id="opcao"value="3">metros</option>
+                <option id="opcao"value="4">kilometros</option>
+            </select>
+
+           <label for="opcao" id="op2">Para:</label>
+                <select id="opcao2">
+                    <option id="opcao2"value="1">milimetros</option>
+                    <option id="opcao2"value="2">centimetros</option>
+                    <option id="opcao2"value="3">metros</option>
+                    <option id="opcao"value="4">kilometros</option>
+                </select>    
+                <button id="alinha_botao" type="button" onclick="limparOpcaoSelecionada()">Voltar</button>
+
+       <div id="result">resultado:</div>
+          
+    </div>
+         
+    
+
+
+        <div id="sidebarR"></div>
+        <div id="footer"></div>
+    </div>
+
+    <!--script de js que verificara as opções de entarda formando os emparceramentos-->
+    <script>
+        document.getElementById('content').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var temperatura = parseFloat(document.getElementById('tempInput').value);
+            var opcaoDe = parseInt(document.getElementById('opcao').value);
+            var opcaoPara = parseInt(document.getElementById('opcao2').value);
+
+            var resultado;
+
+            switch (opcaoDe) {
+                case 1: // milimetros
+                    switch (opcaoPara) {
+                        case 1: // 
+                            resultado = temperatura;
+                            break;
+                        case 2: // milimetros para centimetros
+                            resultado = temperatura/100; 
+                            break;
+                        case 3: // milimetros para metros
+                            resultado = temperatura /1000;
+                            break;
+                        case 4: // milimetros para kilometros
+                            resultado = temperatura /10000;
+                            break;
+                    }
+                    break;
+                case 2: // centimetros
+                    switch (opcaoPara) {
+                        case 1: // centimetros para milimetros
+                            resultado = temperatura *10 ;
+                            break;
+                        case 2: // centimetros para centimetros
+                            resultado = temperatura;
+                            break;
+                        case 3: // centimetros para metros
+                            resultado = temperatura/100;
+                            break;
+                        case 4: // centimetros para kilometros
+                            resultado = temperatura/100000 ;
+                            break;
+                    }
+                    break;
+                case 3: // metros
+                    switch (opcaoPara) {
+                        case 1: // metros para milimetros
+                            resultado = temperatura /1000;
+                            break;
+                        case 2: // metros para centimetros
+                            resultado = (temperatura /100) ;
+                            break;
+                        case 3: // metros para metros
+                            resultado = temperatura;
+                            break;
+                        case 4: // metros para kilometros
+                            resultado = temperatura/1000;
+                            break;
+                    }
+                    break;
+                case 4: // kilometros
+                    switch (opcaoPara) {
+                        case 1: // kilometros para milimetros
+                            resultado = temperatura *1000000;
+                            break;
+                        case 2: // kilometros para centimetros
+                            resultado = (temperatura*100000) 
+                            break;
+                        case 3: // kilometros para metros
+                            resultado = (temperatura * 1000)
+                            break;
+                        case 4: // kilometros para kilometros
+                            resultado = temperatura;
+                            break;
+                    }
+                    break;
+                    
+                }
+
+            document.getElementById('result').innerHTML =  resultado;
+        });
+
+    
+    </script>
+
+<script>
+    function limparOpcaoSelecionada() {
+        document.getElementById('opcao').value = "";
+        window.location.href = "index.html";
+    }
+</script>
+</body>
+</html>
